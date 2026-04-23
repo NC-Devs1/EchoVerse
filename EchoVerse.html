@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoVerse | Spoken Word & Poetry</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5D5CDE;
+            --primary-dark: #4A49B0;
+            --deep-green: #2A6B55;
+            --beige: #F5EFE6;
+            --gold: #D4AF37;
+            --dark-bg: #111111;
+            --dark-card: #222222;
+            --dark-text: #E0E0E0;
+            --light-bg: #FFFFFF;
+            --light-card: #F7F7F7;
+            --light-text: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: var(--transition);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .dark {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        .light {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .main-content {
+            min-height: calc(100vh - 6rem);
+            padding-bottom: 5rem;
+        }
+
+        /* Header */
+        header {
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: var(--transition);
+        }
+
+        .dark header {
+            background-color: rgba(17, 17, 17, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .light header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+        }
+
+        .dark .sidebar {
+            background-color: rgba(17, 17, 17, 0.98);
+        }
+
+        .light .sidebar {
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .dark .sidebar a {
+            color: var(--dark-text);
+        }
+
+        .light .sidebar a {
+            color: var(--light-text);
+        }
+
+        .sidebar a:hover {
+            color: var(--primary);
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        /* Cards */
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark .card {
+            background-color: var(--dark-card);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .light .card {
+            background-color: var(--light-card);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-text {
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid;
+        }
+
+        .dark .card-footer {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .light .card-footer {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid;
+        }
+
+        .dark .btn-outline {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--dark-text);
+        }
+
+        .light .btn-outline {
+            border-color: rgba(0, 0, 0, 0.3);
+            color: var(--light-text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-sm {
+            padding: 0.3rem 0.8rem;
+            font-size: 0.875rem;
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        /* Audio Player */
+        .audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(17, 17, 17, 0.97);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            z-index: 40;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 1px solid rgba(93, 92, 222, 0.3);
+        }
+
+        .audio-player.active {
+            transform: translateY(0);
+        }
+
+        .player-art {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .player-info {
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+
+        .player-title {
+            font-weight: 600;
+            color: white;
+            margin: 0 0 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        .player-artist {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .control-btn:hover {
+            color: var(--primary);
+        }
+
+        .play-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .play-btn:hover {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        .player-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Visual Effects */
+        .visual-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 30;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .visual-canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .close-visual {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 31;
+        }
+
+        /* Categories */
+        .category {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid;
+        }
+
+        .dark .category {
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--dark-text);
+        }
+
+        .light .category {
+            border-color: rgba(0, 0, 0, 0.2);
+            color: var(--light-text);
+        }
+
+        .category:hover, .category.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Spotlight */
+        /* ── Valora-style luxury card pattern ──────────────── */
+        .vcard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1rem;
+            background-color: #191919;
+        }
+
+        .vcard-header-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .vcard-divider {
+            width: 1px;
+            height: 0.85rem;
+            background: rgba(255,255,255,0.16);
+            flex-shrink: 0;
+        }
+
+        .vcard-header-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+            padding: 0 0.6rem;
+        }
+
+        .vcard-cat-tag {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            padding: 0.15rem 0.55rem;
+            border: 1px solid rgba(93,92,222,0.35);
+            border-radius: 50px;
+        }
+
+        .vcard-icon-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.45);
+            cursor: pointer;
+            padding: 0.15rem 0.25rem;
+            font-size: 0.78rem;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .vcard-icon-btn:hover { color: var(--primary); }
+
+        .vcard-body {
+            background-color: #191919;
+            padding: 0.85rem 1rem 0.75rem;
+        }
+
+        .vcard-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 0.3rem;
+            line-height: 1.2;
+            font-size: 1.05rem;
+        }
+
+        .vcard-meta {
+            font-size: 0.68rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.02em;
+            margin: 0 0 0.65rem;
+        }
+
+        .vcard-meta .dot {
+            margin: 0 0.3rem;
+            opacity: 0.35;
+        }
+
+        .vcard-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .vcard-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.58);
+            border-radius: 50px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .vcard-action-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Hero spotlight sizing overrides */
+        .spotlight { border-radius: 15px; overflow: hidden; margin-bottom: 2rem; margin-top: 1.5rem; background: #191919; }
+        .spotlight .vcard-header { padding: 0.9rem 1.3rem; }
+        .spotlight .vcard-body { padding: 1.4rem 1.5rem 1.1rem; }
+        .spotlight .vcard-title { font-size: 2.1rem; }
+        .spotlight .vcard-meta { font-size: 0.8rem; margin-bottom: 1rem; }
+
+        .spotlight-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Artist Section */
+        .artist-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .dark .artist-card {
+            background-color: var(--dark-card);
+        }
+
+        .light .artist-card {
+            background-color: var(--light-card);
+        }
+
+        .artist-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .artist-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--primary);
+        }
+
+        .artist-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .artist-bio {
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+            line-height: 1.4;
+        }
+
+        /* Waveform */
+        .waveform {
+            width: 100%;
+            height: 50px;
+            margin-top: 0.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .waveform-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+        }
+
+        .bar {
+            width: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: height 0.2s ease;
+        }
+
+        /* ── Microphone icon theming ────────────────────────── */
+        .hero-mic {
+            display: block;
+            font-size: 2.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--gold);
+            filter: drop-shadow(0 0 10px rgba(212,175,55,0.55));
+            animation: mic-glow 2.6s ease-in-out infinite;
+            will-change: transform, filter;
+        }
+
+        @keyframes mic-glow {
+            0%, 100% {
+                filter: drop-shadow(0 0 6px rgba(212,175,55,0.4));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 24px rgba(212,175,55,0.9));
+                transform: scale(1.08);
+            }
+        }
+
+        .mic-black {
+            color: #0d0d0d;
+            filter: drop-shadow(0 0 3px rgba(255,255,255,0.18));
+        }
+
+        /* Section headings */
+        .section-heading {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        /* Video Cards */
+        .video-wrap {
+            position: relative;
+            padding-top: 56.25%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-wrap iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .card-footer-col {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+        }
+
+        .video-title {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .video-credit {
+            font-size: 0.82rem;
+            opacity: 0.65;
+        }
+
+        /* Affirmation */
+        .affirmation-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.7;
+            color: var(--gold);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .spotlight-img {
+                height: 250px;
+            }
+
+            .spotlight-title {
+                font-size: 1.5rem;
+            }
+
+            .audio-player {
+                padding: 0.5rem;
+            }
+
+            .player-controls {
+                gap: 0.5rem;
+            }
+
+            .control-btn {
+                font-size: 1rem;
+            }
+
+            .play-btn {
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        button:focus, a:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Utility Classes */
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-5 { margin-top: 1.5rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-5 { margin-bottom: 1.5rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .flex { display: flex; }
+        .flex-wrap { flex-wrap: wrap; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .w-full { width: 100%; }
+        .text-center { text-align: center; }
+        .hidden { display: none; }
+        .relative { position: relative; }
+
+        @media (min-width: 640px) {
+            .sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 768px) {
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+        }
+    </style>
+</head>
+<body class="dark">
+
+    <!-- Sidebar Navigation -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#home"><i class="fas fa-home"></i> Home</a>
+        <a href="#explore"><i class="fas fa-compass"></i> Explore</a>
+        <a href="#artists"><i class="fas fa-users"></i> Artists</a>
+        <a href="#communities"><i class="fas fa-comments"></i> Community</a>
+        <a href="#events"><i class="fas fa-calendar-alt"></i> Events</a>
+        <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+        <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+        <div class="px-3 py-3 mt-4">
+            <button id="theme-toggle" class="btn btn-outline w-full">
+                <i class="fas fa-sun"></i> Switch to Light Mode
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="flex justify-between items-center">
+                <button type="button" class="btn btn-outline" aria-label="Open menu" onclick="openNav()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo">
+                    <i class="fas fa-microphone-alt mic-black"></i> EchoVerse
+                </div>
+                <button type="button" class="btn btn-outline" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+
+            <!-- Daily Spotlight -->
+            <section id="spotlight" class="spotlight">
+                <div class="vcard-header">
+                    <button type="button" class="vcard-icon-btn" aria-label="Back">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="vcard-header-center">
+                        <div class="vcard-divider"></div>
+                        <span class="vcard-header-label">Daily Spotlight</span>
+                        <div class="vcard-divider"></div>
+                    </div>
+                    <button type="button" class="vcard-icon-btn" aria-label="Options">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="vcard-body">
+                    <i class="fas fa-microphone-alt hero-mic"></i>
+                    <h2 class="vcard-title">The Unspoken Words</h2>
+                    <p class="vcard-meta">By Maya Rivers <span class="dot">·</span> Love <span class="dot">·</span> Spoken Word</p>
+                    <div class="vcard-actions">
+                        <button type="button" class="vcard-action-btn"><i class="far fa-heart"></i> Save</button>
+                        <button type="button" class="vcard-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                        <button type="button" class="btn btn-primary btn-sm play-spotlight"><i class="fas fa-play"></i> Listen Now</button>
+                    </div>
+                </div>
+                <img src="https://picsum.photos/seed/spotlight1/1200/350" alt="Spotlight Image" class="spotlight-img">
+            </section>
+
+            <!-- Categories -->
+            <section id="categories" class="mb-5">
+                <h2 class="section-heading">Browse Categories</h2>
+                <div class="flex flex-wrap mt-3">
+                    <span class="category active">All</span>
+                    <span class="category">Motivation</span>
+                    <span class="category">Love</span>
+                    <span class="category">Growth</span>
+                    <span class="category">Social Justice</span>
+                    <span class="category">Nature</span>
+                    <span class="category">Identity</span>
+                    <span class="category">Reflection</span>
+                </div>
+            </section>
+
+            <!-- Featured Poems -->
+            <section id="featured" class="mb-5">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="section-heading">Featured Poems</h2>
+                    <a href="#view-all" class="btn btn-outline btn-sm">View All</a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+                    <!-- Video Card 1 -->
+                    <div class="card">
+                        <div class="vcard-header">
+                            <span class="vcard-cat-tag">Love</span>
+                            <div class="vcard-header-center">
+                                <div class="vcard-divider"></div>
+                                <span class="vcard-header-label"><i class="fas fa-microphone-alt mic-black"></i> Spoken Word</span>
+                                <div class="vcard-divider"></div>
+                            </div>
+                            <button type="button" class="vcard-icon-btn" aria-label="Options"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="vcard-body">
+                            <h3 class="vcard-title">If I Never Get to Love You</h3>
+                            <p class="vcard-meta">By Kira J <span class="dot">·</span> Voices In Power, Brooklyn 2024</p>
+                            <div class="vcard-actions">
+                                <button type="button" class="vcard-action-btn"><i class="far fa-heart"></i> Save</button>
+                                <button type="button" class="vcard-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://www.youtube.com/embed/OrOdgRcKhB8"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen loading="lazy" title="If I Never Get to Love You"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 2 -->
+                    <div class="card">
+                        <div class="vcard-header">
+                            <span class="vcard-cat-tag">Reflection</span>
+                            <div class="vcard-header-center">
+                                <div class="vcard-divider"></div>
+                                <span class="vcard-header-label"><i class="fas fa-microphone-alt mic-black"></i> Spoken Word</span>
+                                <div class="vcard-divider"></div>
+                            </div>
+                            <button type="button" class="vcard-icon-btn" aria-label="Options"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="vcard-body">
+                            <h3 class="vcard-title">My Honest Poem</h3>
+                            <p class="vcard-meta">By Rudy Francisco</p>
+                            <div class="vcard-actions">
+                                <button type="button" class="vcard-action-btn"><i class="far fa-heart"></i> Save</button>
+                                <button type="button" class="vcard-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://www.youtube.com/embed/dDa4WTZ_58M"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen loading="lazy" title="My Honest Poem"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 3 -->
+                    <div class="card">
+                        <div class="vcard-header">
+                            <span class="vcard-cat-tag">Motivation</span>
+                            <div class="vcard-header-center">
+                                <div class="vcard-divider"></div>
+                                <span class="vcard-header-label"><i class="fas fa-microphone-alt mic-black"></i> Spoken Word</span>
+                                <div class="vcard-divider"></div>
+                            </div>
+                            <button type="button" class="vcard-icon-btn" aria-label="Options"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="vcard-body">
+                            <h3 class="vcard-title">Ciara Chantelle at Voices In Power</h3>
+                            <p class="vcard-meta">By Ciara Chantelle <span class="dot">·</span> Philadelphia</p>
+                            <div class="vcard-actions">
+                                <button type="button" class="vcard-action-btn"><i class="far fa-heart"></i> Save</button>
+                                <button type="button" class="vcard-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://www.youtube.com/embed/axRWGC9BrUw"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen loading="lazy" title="Ciara Chantelle at Voices In Power"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 4 -->
+                    <div class="card">
+                        <div class="vcard-header">
+                            <span class="vcard-cat-tag">Identity</span>
+                            <div class="vcard-header-center">
+                                <div class="vcard-divider"></div>
+                                <span class="vcard-header-label"><i class="fas fa-microphone-alt mic-black"></i> Spoken Word</span>
+                                <div class="vcard-divider"></div>
+                            </div>
+                            <button type="button" class="vcard-icon-btn" aria-label="Options"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="vcard-body">
+                            <h3 class="vcard-title">What It Means to Be a Nigerian</h3>
+                            <p class="vcard-meta">Orange Poetry Sessions <span class="dot">·</span> Lip Fest Slam</p>
+                            <div class="vcard-actions">
+                                <button type="button" class="vcard-action-btn"><i class="far fa-heart"></i> Save</button>
+                                <button type="button" class="vcard-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://www.youtube.com/embed/7bHEUEZ8lmM"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen loading="lazy" title="What it means to be a Nigerian"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 5 -->
+                    <div class="card">
+                        <div class="vcard-header">
+                            <span class="vcard-cat-tag">Love</span>
+                            <div class="vcard-header-center">
+                                <div class="vcard-divider"></div>
+                                <span class="vcard-header-label"><i class="fas fa-microphone-alt mic-black"></i> Spoken Word</span>
+                                <div class="vcard-divider"></div>
+                            </div>
+                            <button type="button" class="vcard-icon-btn" aria-label="Options"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="vcard-body">
+                            <h3 class="vcard-title">A Million Reasons to Like You</h3>
+                            <p class="vcard-meta">By Jennifer N</p>
+                            <div class="vcard-actions">
+                                <button type="button" class="vcard-action-btn"><i class="far fa-heart"></i> Save</button>
+                                <button type="button" class="vcard-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://www.youtube.com/embed/JocsumPQyWA"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen loading="lazy" title="A Million Reasons to Like You"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 6 -->
+                    <div class="card">
+                        <div class="vcard-header">
+                            <span class="vcard-cat-tag">Growth</span>
+                            <div class="vcard-header-center">
+                                <div class="vcard-divider"></div>
+                                <span class="vcard-header-label"><i class="fas fa-microphone-alt mic-black"></i> Spoken Word</span>
+                                <div class="vcard-divider"></div>
+                            </div>
+                            <button type="button" class="vcard-icon-btn" aria-label="Options"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="vcard-body">
+                            <h3 class="vcard-title">Learned With Love</h3>
+                            <p class="vcard-meta">By Matt Capone</p>
+                            <div class="vcard-actions">
+                                <button type="button" class="vcard-action-btn"><i class="far fa-heart"></i> Save</button>
+                                <button type="button" class="vcard-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://www.youtube.com/embed/3g5KrymsELE"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen loading="lazy" title="Learned With Love"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 7 -->
+                    <div class="card">
+                        <div class="vcard-header">
+                            <span class="vcard-cat-tag">Motivation</span>
+                            <div class="vcard-header-center">
+                                <div class="vcard-divider"></div>
+                                <span class="vcard-header-label"><i class="fas fa-microphone-alt mic-black"></i> Live Performance</span>
+                                <div class="vcard-divider"></div>
+                            </div>
+                            <button type="button" class="vcard-icon-btn" aria-label="Options"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="vcard-body">
+                            <h3 class="vcard-title">How Does It Feel Now? (Live)</h3>
+                            <p class="vcard-meta">By Akua Naru</p>
+                            <div class="vcard-actions">
+                                <button type="button" class="vcard-action-btn"><i class="far fa-heart"></i> Save</button>
+                                <button type="button" class="vcard-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://www.youtube.com/embed/fZoMzWraS_c"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen loading="lazy" title="How Does It Feel Now? Live Performance"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 8 -->
+                    <div class="card">
+                        <div class="vcard-header">
+                            <span class="vcard-cat-tag">Social Justice</span>
+                            <div class="vcard-header-center">
+                                <div class="vcard-divider"></div>
+                                <span class="vcard-header-label"><i class="fas fa-microphone-alt mic-black"></i> Spoken Word</span>
+                                <div class="vcard-divider"></div>
+                            </div>
+                            <button type="button" class="vcard-icon-btn" aria-label="Options"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="vcard-body">
+                            <h3 class="vcard-title">The Block</h3>
+                            <p class="vcard-meta">By Akua Naru</p>
+                            <div class="vcard-actions">
+                                <button type="button" class="vcard-action-btn"><i class="far fa-heart"></i> Save</button>
+                                <button type="button" class="vcard-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="video-wrap">
+                            <iframe src="https://www.youtube.com/embed/Tj6LLXtZPRY"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen loading="lazy" title="The Block"></iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Trending Artists -->
+            <section id="artists" class="mb-5">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="section-heading">Trending Artists</h2>
+                    <a href="#view-all-artists" class="btn btn-outline btn-sm">View All</a>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+                    <div class="artist-card">
+                        <img src="https://picsum.photos/seed/artist1/200/200" alt="Maya Rivers" class="artist-avatar">
+                        <h3 class="artist-name">Maya Rivers</h3>
+                        <p class="artist-bio">Passionate poet exploring themes of nature and identity</p>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-user-plus"></i> Follow
+                        </button>
+                    </div>
+
+                    <div class="artist-card">
+                        <img src="https://picsum.photos/seed/artist2/200/200" alt="Jamal Wilson" class="artist-avatar">
+                        <h3 class="artist-name">Jamal Wilson</h3>
+                        <p class="artist-bio">Urban poet with a focus on social justice themes</p>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-user-plus"></i> Follow
+                        </button>
+                    </div>
+
+                    <div class="artist-card">
+                        <img src="https://picsum.photos/seed/artist3/200/200" alt="Sarah Kim" class="artist-avatar">
+                        <h3 class="artist-name">Sarah Kim</h3>
+                        <p class="artist-bio">Award-winning spoken word artist exploring cultural identity</p>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-user-plus"></i> Follow
+                        </button>
+                    </div>
+
+                    <div class="artist-card">
+                        <img src="https://picsum.photos/seed/artist4/200/200" alt="Leo Martinez" class="artist-avatar">
+                        <h3 class="artist-name">Leo Martinez</h3>
+                        <p class="artist-bio">Experimental poet blending traditional and modern styles</p>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-user-plus"></i> Follow
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Upcoming Events -->
+            <section id="events" class="mb-5">
+                <h2 class="section-heading mb-4">Upcoming Events</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="flex justify-between mb-3">
+                                <span class="px-3 py-2" style="background-color: var(--deep-green); color: white; border-radius: 5px; font-weight: 600; font-size: 0.85rem;">JUL 15</span>
+                                <button type="button" class="btn btn-outline btn-sm">
+                                    <i class="far fa-calendar-plus"></i> Add to Calendar
+                                </button>
+                            </div>
+                            <h3 class="card-title">Summer Verses: Live Poetry</h3>
+                            <p class="card-text">Join us for a night of powerful performances from both established and emerging poets.</p>
+                            <p class="mt-3"><i class="fas fa-clock"></i> 7:00 PM – 9:30 PM</p>
+                            <p><i class="fas fa-video"></i> Virtual Event</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-ticket-alt"></i> Register Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="flex justify-between mb-3">
+                                <span class="px-3 py-2" style="background-color: var(--deep-green); color: white; border-radius: 5px; font-weight: 600; font-size: 0.85rem;">JUL 22</span>
+                                <button type="button" class="btn btn-outline btn-sm">
+                                    <i class="far fa-calendar-plus"></i> Add to Calendar
+                                </button>
+                            </div>
+                            <h3 class="card-title">Poetry Workshop: Finding Your Voice</h3>
+                            <p class="card-text">A hands-on workshop led by award-winning poet Maya Rivers, focused on developing your unique style.</p>
+                            <p class="mt-3"><i class="fas fa-clock"></i> 3:00 PM – 5:00 PM</p>
+                            <p><i class="fas fa-video"></i> Virtual Event</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-ticket-alt"></i> Register Now
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Daily Affirmation -->
+            <section id="affirmation" class="mb-5">
+                <div class="card">
+                    <div class="card-body text-center py-3">
+                        <h3>Today's Affirmation</h3>
+                        <p class="affirmation-quote mt-3">
+                            "You are the author of your own story. Each day is a blank page waiting for your words."
+                        </p>
+                        <p class="mt-2" style="opacity: 0.7;">— Sarah Kim</p>
+                        <button class="btn btn-primary mt-3">
+                            <i class="fas fa-share-alt"></i> Share This
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Audio Player -->
+    <div class="audio-player" id="audioPlayer">
+        <div class="player-progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <img src="https://picsum.photos/seed/player/100/100" alt="Currently Playing" class="player-art" id="playerArt">
+        <div class="player-info">
+            <h4 class="player-title" id="playerTitle">The Journey Within</h4>
+            <p class="player-artist" id="playerArtist">Alex Thompson</p>
+        </div>
+        <div class="player-controls">
+            <button type="button" class="control-btn" id="prevBtn" aria-label="Previous">
+                <i class="fas fa-step-backward"></i>
+            </button>
+            <button type="button" class="control-btn play-btn" id="playPauseBtn" aria-label="Play/Pause">
+                <i class="fas fa-pause" id="playPauseIcon"></i>
+            </button>
+            <button type="button" class="control-btn" id="nextBtn" aria-label="Next">
+                <i class="fas fa-step-forward"></i>
+            </button>
+            <button type="button" class="control-btn" id="visualBtn" aria-label="Visual effects">
+                <i class="fas fa-eye"></i>
+            </button>
+            <button type="button" class="control-btn" id="subtitlesBtn" aria-label="Subtitles">
+                <i class="fas fa-closed-captioning"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Visual Effects Container -->
+    <div class="visual-container" id="visualContainer">
+        <button class="close-visual" id="closeVisual">
+            <i class="fas fa-times"></i>
+        </button>
+        <canvas class="visual-canvas" id="visualCanvas"></canvas>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const body = document.body;
+        const sidebar = document.getElementById('mySidebar');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const progressBar = document.getElementById('progressBar');
+        const playerArt = document.getElementById('playerArt');
+        const playerTitle = document.getElementById('playerTitle');
+        const playerArtist = document.getElementById('playerArtist');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playPauseIcon = document.getElementById('playPauseIcon');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const visualBtn = document.getElementById('visualBtn');
+        const visualContainer = document.getElementById('visualContainer');
+        const visualCanvas = document.getElementById('visualCanvas');
+        const closeVisual = document.getElementById('closeVisual');
+        const categories = document.querySelectorAll('.category');
+
+        const poems = [
+            {
+                id: 1,
+                title: "The Journey Within",
+                artist: "Alex Thompson",
+                image: "https://picsum.photos/seed/poem1/400/200",
+                category: "Growth",
+                text: "Walking through shadows of doubt,\nI found a light within me.\nA beacon of hope,\nGuiding me through the darkness.\nEach step forward,\nA victory against fear.\nEach breath, a reminder\nThat I am alive and powerful.\nThe journey continues,\nBut I am no longer lost."
+            },
+            {
+                id: 2,
+                title: "Whispers of Dawn",
+                artist: "Eliza Chen",
+                image: "https://picsum.photos/seed/poem2/400/200",
+                category: "Nature",
+                text: "The world awakens in hushed tones,\nPink and gold stretch across the sky.\nDew-kissed leaves shimmer,\nAs birds begin their morning song.\nA new day unfolds its promise,\nFresh with possibility.\nI breathe in the cool air,\nAnd feel my spirit lift with the sun.\nToday is a gift,\nWrapped in morning light."
+            },
+            {
+                id: 3,
+                title: "Urban Echoes",
+                artist: "Marcus James",
+                image: "https://picsum.photos/seed/poem3/400/200",
+                category: "Social Justice",
+                text: "Concrete jungles where dreams are made,\nAnd sometimes forgotten.\nFootsteps echo through alleyways,\nStories written on brick walls.\nThe city breathes with millions of lives,\nEach one a universe of experience.\nListen closely to the symphony of streets,\nThe poetry of everyday survival.\nIn this urban landscape,\nWe find our collective voice."
+            },
+            {
+                id: 4,
+                title: "The Unspoken Words",
+                artist: "Maya Rivers",
+                image: "https://picsum.photos/seed/spotlight1/400/200",
+                category: "Love",
+                text: "The words we never say\nHang in the air between us,\nHeavy with meaning,\nLight with possibility.\nWhat would happen\nIf we gave them voice?\nIf we released them\nLike butterflies into the open air?\nPerhaps they would transform\nInto the bridge we need."
+            }
+        ];
+
+        let currentPoemIndex = 0;
+        let isPlaying = false;
+        let audio = null;
+        let progressInterval = null;
+        let visualizer = null;
+
+        function initWaveforms() {
+            document.querySelectorAll('.waveform-bars').forEach(waveform => {
+                for (let i = 0; i < 30; i++) {
+                    const bar = document.createElement('div');
+                    bar.className = 'bar';
+                    bar.style.height = `${Math.floor(Math.random() * 50) + 10}%`;
+                    waveform.appendChild(bar);
+                }
+            });
+        }
+
+        function initAudio() {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            const audioContext = new AudioContext();
+
+            audio = new Audio();
+            audio.crossOrigin = "anonymous";
+            audio.src = 'https://cdn.jsdelivr.net/gh/anars/blank-audio@master/5-seconds-of-silence.mp3';
+
+            const canvasCtx = visualCanvas.getContext('2d');
+            visualCanvas.width = window.innerWidth;
+            visualCanvas.height = window.innerHeight;
+            const WIDTH = visualCanvas.width;
+            const HEIGHT = visualCanvas.height;
+
+            const source = audioContext.createMediaElementSource(audio);
+            const analyser = audioContext.createAnalyser();
+            analyser.fftSize = 256;
+            source.connect(analyser);
+            analyser.connect(audioContext.destination);
+
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+
+            function drawVisualizer() {
+                if (!visualContainer.style.display || visualContainer.style.display === 'none') return;
+                requestAnimationFrame(drawVisualizer);
+                analyser.getByteFrequencyData(dataArray);
+
+                canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+                canvasCtx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+                canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+
+                const centerX = WIDTH / 2;
+                const centerY = HEIGHT / 2;
+                const radius = Math.min(WIDTH, HEIGHT) / 4;
+
+                for (let i = 0; i < bufferLength; i++) {
+                    const percent = dataArray[i] / 255;
+                    const hue = i / bufferLength * 360;
+
+                    canvasCtx.beginPath();
+                    canvasCtx.arc(centerX, centerY, radius + percent * radius * 1.5, 0, Math.PI * 2);
+                    canvasCtx.strokeStyle = `hsla(${hue}, 80%, 50%, ${percent * 0.8})`;
+                    canvasCtx.lineWidth = 5 * percent;
+                    canvasCtx.stroke();
+
+                    if (Math.random() > 0.9 && percent > 0.2) {
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = radius + Math.random() * radius * percent;
+                        canvasCtx.beginPath();
+                        canvasCtx.arc(
+                            centerX + Math.cos(angle) * distance,
+                            centerY + Math.sin(angle) * distance,
+                            Math.random() * 5 + 2, 0, Math.PI * 2
+                        );
+                        canvasCtx.fillStyle = `hsla(${hue}, 80%, 60%, ${percent})`;
+                        canvasCtx.fill();
+                    }
+                }
+            }
+
+            visualizer = drawVisualizer;
+
+            audio.addEventListener('ended', playNextPoem);
+            audio.addEventListener('timeupdate', () => {
+                if (audio.duration) {
+                    progressBar.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+                }
+            });
+        }
+
+        function playPoem(id) {
+            const idx = poems.findIndex(p => p.id === id);
+            if (idx !== -1) {
+                currentPoemIndex = idx;
+                loadCurrentPoem();
+            }
+        }
+
+        function loadCurrentPoem() {
+            const poem = poems[currentPoemIndex];
+            playerTitle.textContent = poem.title;
+            playerArtist.textContent = poem.artist;
+            playerArt.src = poem.image;
+            audioPlayer.classList.add('active');
+            progressBar.style.width = '0%';
+
+            if (audio) {
+                audio.currentTime = 0;
+                startPlaying();
+            }
+
+            clearInterval(progressInterval);
+            let progress = 0;
+            progressInterval = setInterval(() => {
+                progress += 100 / 400;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    playNextPoem();
+                }
+                progressBar.style.width = `${progress}%`;
+            }, 100);
+        }
+
+        function playNextPoem() {
+            currentPoemIndex = (currentPoemIndex + 1) % poems.length;
+            loadCurrentPoem();
+        }
+
+        function playPreviousPoem() {
+            currentPoemIndex = (currentPoemIndex - 1 + poems.length) % poems.length;
+            loadCurrentPoem();
+        }
+
+        function startPlaying() {
+            if (audio) {
+                audio.play().catch(e => console.log("Audio play failed:", e));
+            }
+            playPauseIcon.className = "fas fa-pause";
+            isPlaying = true;
+            animateWaveform();
+        }
+
+        function pausePlaying() {
+            if (audio) audio.pause();
+            playPauseIcon.className = "fas fa-play";
+            isPlaying = false;
+        }
+
+        function togglePlay() {
+            isPlaying ? pausePlaying() : startPlaying();
+        }
+
+        function animateWaveform() {
+            document.querySelectorAll('.bar').forEach(bar => {
+                bar.style.height = `${Math.floor(Math.random() * 50) + 10}%`;
+            });
+            if (isPlaying) setTimeout(animateWaveform, 120);
+        }
+
+        function openNav() {
+            sidebar.style.width = "250px";
+        }
+
+        function closeNav() {
+            sidebar.style.width = "0";
+        }
+
+        function toggleTheme() {
+            if (body.classList.contains('dark')) {
+                body.classList.replace('dark', 'light');
+                themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i> Switch to Dark Mode';
+            } else {
+                body.classList.replace('light', 'dark');
+                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i> Switch to Light Mode';
+            }
+        }
+
+        function showVisuals() {
+            visualContainer.style.display = 'flex';
+            if (visualizer) visualizer();
+        }
+
+        function hideVisuals() {
+            visualContainer.style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initWaveforms();
+            initAudio();
+
+            document.querySelectorAll('.play-poem').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    playPoem(parseInt(this.getAttribute('data-id')));
+                });
+            });
+
+            document.querySelector('.play-spotlight').addEventListener('click', () => playPoem(4));
+
+            playPauseBtn.addEventListener('click', togglePlay);
+            prevBtn.addEventListener('click', playPreviousPoem);
+            nextBtn.addEventListener('click', playNextPoem);
+            visualBtn.addEventListener('click', showVisuals);
+            closeVisual.addEventListener('click', hideVisuals);
+            themeToggleBtn.addEventListener('click', toggleTheme);
+
+            categories.forEach(cat => {
+                cat.addEventListener('click', function () {
+                    categories.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+
+        if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            body.classList.replace('dark', 'light');
+            if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i> Switch to Dark Mode';
+        }
+    </script>
+</body>
+</html>
