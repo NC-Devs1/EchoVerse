@@ -9,3 +9,4 @@ serve.mjs
 EchoVerse/
 EchoVerseTests/
 EchoVerseUITests/
+.vercel
